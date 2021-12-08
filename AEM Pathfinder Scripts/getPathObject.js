@@ -1,7 +1,9 @@
 
+
 "use strict";
 
 const aemJson = require("./data.js")
+
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -31,15 +33,21 @@ var audioPaths = dataSet.items[0].items.map(function (item) {
     var key = "Audio " + item.text;
     return _defineProperty({}, key, item.path);
   }
-}); // Flache das Array in eine Dimension ab
+}); 
+
+// Flache das Array in eine Dimension ab
 
 var audioArray = [audioPaths[0]];
-audioArray.push.apply(audioArray, _toConsumableArray(audioPaths[1])); // extrahiere die Sport-Pfade und schreibe sie in ein Array
+audioArray.push.apply(audioArray, _toConsumableArray(audioPaths[1])); 
+
+// extrahiere die Sport-Pfade und schreibe sie in ein Array
 
 var sportArray = dataSet.items[1].items.map(function (item) {
   var key = "Sport " + item.text;
   return _defineProperty({}, key, item.path);
-}); // extrahiere die Video-Pfade und schreibe sie in ein Array
+}); 
+
+// extrahiere die Video-Pfade und schreibe sie in ein Array
 
 var videoArray = dataSet.items[2].items.map(function (item) {
   var key = "Video " + item.text;
@@ -61,7 +69,7 @@ var pathObject = arrayToObject(pathArray)
 
 // Funktion für das Auffinden eines Objects in einem Array anhand des Values
 
-console.log(pathObject)
+console.log(pathArray)
 
 function findObjectByKey(array, key, value) {
   for (var i = 0; i < array.length; i++) {

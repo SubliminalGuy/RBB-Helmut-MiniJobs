@@ -1,3 +1,4 @@
+
 "use strict";
 
 const aemJson = require("./data.js")
@@ -24,7 +25,7 @@ var dataSet = findObjectByKey(aemJson.body, "text", "rbb24");
 var audioPaths = dataSet.items[0].items.map(function (item) {
   if (item.items) {
     return item.items.map(function (el) {
-      return ["Audio " + item.text + " " + el.text];
+      return ["Audio " + el.text];
     });
   } else {
     return ["Audio " + item.text];
@@ -38,7 +39,7 @@ var audioArray = [audioPaths[0]];
 audioArray.push.apply(audioArray, _toConsumableArray(audioPaths[1])); // extrahiere die Sport-Pfade und schreibe sie in ein Array
 
 var sportArray = dataSet.items[1].items.map(function (item) {
-  return ["Sport" + item.text];
+  return ["Sport " + item.text];
 }).reverse(); // extrahiere die Video-Pfade und schreibe sie in ein Array
 
 var videoArray = dataSet.items[2].items.map(function (item) {
@@ -63,4 +64,7 @@ function findObjectByKey(array, key, value) {
 
   return null;
 }
+
+
+
 
