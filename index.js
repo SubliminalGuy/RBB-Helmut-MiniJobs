@@ -16,6 +16,6 @@ var mediaJSON = require('./job')
 //console.log(mediaJSON.metadata)
 
 //var datum = "31-01-2001 14:00"
-console.log(swapObject(sendungsKuerzel))
+console.log(changeSequenceName())
 
 
