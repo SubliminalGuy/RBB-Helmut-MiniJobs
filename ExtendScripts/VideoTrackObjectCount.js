@@ -1,6 +1,9 @@
-pathToCheck = "\\\\sp-fbpkons-istb01\\Transfer\\CNC\\Helmut\\Helmut4"
-arrClipPaths = []
-arrClipNames = []
+var pathToCheck = "\\\\sp-fbpkons-istb01\\Transfer\\CNC\\Helmut\\Helmut4"
+var path2ToCheck = "\\\\sb-fbp-ist01\\VPMS\\Ingest\\IN_MaterialPool"
+var path3ToCheck = "\\\\sp-fbp-ist01\\VPMS\\Ingest\\IN_MaterialPool"
+
+var arrClipPaths = []
+var arrClipNames = []
 CheckPathOfTimelineClips(app.project.activeSequence)
 
 JSON.stringify(CheckPathOfTimelineClips(app.project.activeSequence))
@@ -45,8 +48,9 @@ function checkPath(CLIP) {
                     var clipPath = PrItem.getMediaPath()
                     var clipName = PrItem.name
                     var clipPathIndex = clipPath.indexOf(pathToCheck) // wenn der Pfad nicht dem pathToCheck enspricht wird -1 ausgegeben
-
-                    if (clipPathIndex == -1) { //überprüft ob der Clip Pfad bereits im Array vorhanden ist, falls nicht wird er ans Ende gepusht     
+                    var clipPath2Index = clipPath.indexOf(path2ToCheck)
+                    var clipPath3Index = clipPath.indexOf(path3ToCheck)
+                    if (clipPathIndex == -1 && clipPath2Index == -1 && clipPath3Index == -1 ) { //überprüft ob der Clip Pfad bereits im Array vorhanden ist, falls nicht wird er ans Ende gepusht     
                         for (var k = 0; k < arrClipPaths.length; k++) {
                             var arrCHECK
                             if (arrClipPaths[k] == clipPath) { arrCHECK = true; break }
