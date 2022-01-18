@@ -1,14 +1,14 @@
-
 pathToCheck = "\\\\sp-fbpkons-istb01\\Transfer\\CNC\\Helmut\\Helmut4"
 arrClipPaths = []
+arrClipNames = []
 CheckPathOfTimelineClips(app.project.activeSequence)
 
-// var newFile("\\test\test\\")
+JSON.stringify(CheckPathOfTimelineClips(app.project.activeSequence))
 
-// $.writeln(app.project.rootItem.findItemsMatchingMediaPath("\\\\sp-fbpkons-istb01\\Transfer\\CNC\\Helmut\\Helmut4"))
 
-function CheckPathOfTimelineClips(activeSequence) {
-    if (activeSequence) {
+
+function CheckPathOfTimelineClips(mysequence) {
+    if (mysequence) {
         activeSequence = app.project.activeSequence
         videoTracks = activeSequence.videoTracks
         audioTracks = activeSequence.audioTracks
@@ -25,13 +25,17 @@ function CheckPathOfTimelineClips(activeSequence) {
     }
 
 
-    else ($.writeln("keine aktive Sequenz vorhanden"))
+    else {
+        return {"message":"Keine aktive Sequenz vorhanden"}
+    }
 }
+
+
 function checkPath(CLIP) {
     for (var i = 0; i < CLIP.numTracks; i++) {
         var track = CLIP[i]
         var TrackClips = track.clips
-        var Anzclips = TrackClips.numItems
+        //var Anzclips = TrackClips.numItems
         for (var j = 0; j < TrackClips.numItems; j++) {
             var TrackClip = TrackClips[j]
             if (!TrackClip.disabled) {
@@ -39,6 +43,7 @@ function checkPath(CLIP) {
                 if (PrItem && PrItem.type == ProjectItemType.CLIP) {
                     //$.writeln(PrItem.name)
                     var clipPath = PrItem.getMediaPath()
+                    var clipName = PrItem.name
                     var clipPathIndex = clipPath.indexOf(pathToCheck) // wenn der Pfad nicht dem pathToCheck enspricht wird -1 ausgegeben
 
                     if (clipPathIndex == -1) { //überprüft ob der Clip Pfad bereits im Array vorhanden ist, falls nicht wird er ans Ende gepusht     
@@ -47,7 +52,10 @@ function checkPath(CLIP) {
                             if (arrClipPaths[k] == clipPath) { arrCHECK = true; break }
                             else (arrCHECK = false)
                         }
-                        if (!arrCHECK) { (arrClipPaths.push(clipPath)) }
+                        if (!arrCHECK) { 
+                            (arrClipPaths.push(clipPath));
+                            (arrClipNames.push(clipName))
+                        }
                     }
                 }
             }
@@ -55,19 +63,24 @@ function checkPath(CLIP) {
     }
 }
 function ReturnClipPaths() {
+    var PathObj ={}
     if (arrClipPaths.length > 0) {
-        $.writeln("Folgende Clips müssen auf den zentralen Speicher kopiert werden: ")
-        for (var k = 0; k < arrClipPaths.length; k++) {
-            $.writeln(arrClipPaths[k])
-        }
-        var PathObj ={}
+        
+        
         PathObj.Anzahl = arrClipPaths.length
         PathObj.Pfade = arrClipPaths
+        PathObj.Names = arrClipNames
         PathObj.lastPath = "0"
+    }
+        
+    else {
+        PathObj.Anzahl = 0 
+    }
         PathObjString = JSON.stringify(PathObj)
         PathObjString = PathObjString.replace(/\\\\/g,"/")
-        $.writeln(PathObjString)
+      
         return PathObjString
     }
 
-}
+
+
