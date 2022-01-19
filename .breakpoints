@@ -1,5 +1,13 @@
 {
   "files": {
+    "ExtendScripts/renameFilesExperiment.js": [
+      {
+        "id": "570ded2a-3e9d-41e6-80cf-f6b4e5d4e97b",
+        "line": 1,
+        "version": 0,
+        "index": 0
+      }
+    ],
     "Premiere.json": [
       {
         "id": "3436fcf3-104f-42e7-baac-e938146eba62",
