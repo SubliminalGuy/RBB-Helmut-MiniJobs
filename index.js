@@ -15,7 +15,17 @@ var mediaJSON = require('./job')
 
 //console.log(mediaJSON.metadata)
 
-//var datum = "31-01-2001 14:00"
-console.log(changeSequenceName())
+var datum = "19.02.2022"
 
+function getDateSuffix() {
 
+    var dateArray = datum.split(".")
+    var neuesDatum = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0]
+    console.log("Neues Datum", neuesDatum)
+    var realDate = new Date(neuesDatum)
+    var monthShort = realDate.toLocaleString('de-DE', { month: 'short' })
+    var test = realDate.getDate() + "-" + monthShort
+    console.log(test)
+}
+
+getDateSuffix()
