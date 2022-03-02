@@ -125,4 +125,4 @@ function functionDieAufgerufenWirdWennDasProjectSichAendert(documentID) {
 
 //Premiere Pro Scripting Dokumentation:
 //https://ppro-scripting.docsforadobe.dev/
-
+// 
