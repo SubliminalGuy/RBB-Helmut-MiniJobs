@@ -15,17 +15,29 @@ var mediaJSON = require('./job')
 
 //console.log(mediaJSON.metadata)
 
-var datum = "19.02.2022"
+var themeObject = {
+  "01.01.2000": [["Sonstiges", "0000"]],
+  "22.02.2022": [
+    ["Masterprojekt_Berlin_22_Feb", "6214ec06fbccaa00011b1ce9"],
+    ["Masterprojekt_Berlin_2_22_Feb", "6214ed31fbccaa00011b1ceb"],
+    ["Masterprojekt_Berlin_3_22_Feb", "6214f168fbccaa00011b1ced"],
+    ["Masterprojekt_Berlin_5_22_Feb", "62150a66fbccaa00011b1cf4"],
+  ],
+  "23.02.2022": [["Storchwetter_Master_23_Feb", "621613dbfbccaa00011b1cf8"]],
+};
 
-function getDateSuffix() {
+var newDate = "22.02.2022";
 
-    var dateArray = datum.split(".")
-    var neuesDatum = dateArray[2] + "-" + dateArray[1] + "-" + dateArray[0]
-    console.log("Neues Datum", neuesDatum)
-    var realDate = new Date(neuesDatum)
-    var monthShort = realDate.toLocaleString('de-DE', { month: 'short' })
-    var test = realDate.getDate() + "-" + monthShort
-    console.log(test)
+
+
+var masterprojektArray = themeObject[newDate]
+
+var masterprojektIdArray = []
+
+for (var i =0; i<masterprojektArray.length; i++) {
+  masterprojektIdArray.push(masterprojektArray[i][1])
 }
-
-getDateSuffix()
+console.log(masterprojektIdArray);
+var bla = masterprojektIdArray.shift()
+console.log(bla);
+console.log(masterprojektIdArray);
