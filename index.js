@@ -37,7 +37,7 @@ var masterprojektIdArray = []
 for (var i =0; i<masterprojektArray.length; i++) {
   masterprojektIdArray.push(masterprojektArray[i][1])
 }
-console.log(masterprojektIdArray);
-var bla = masterprojektIdArray.shift()
-console.log(bla);
-console.log(masterprojektIdArray);
+
+
+var zahl = "38693579853757,4455"
+console.log(zahl.split(","))
