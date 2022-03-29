@@ -39,5 +39,11 @@ for (var i =0; i<masterprojektArray.length; i++) {
 }
 
 
-var zahl = "38693579853757,4455"
-console.log(zahl.split(","))
+var Wort = "fdhfkldshgjkdhdgjkshjkgshjkghdjkdghjkghsdjkhgjhsgkdjhjgdkshkjghjkgsdhjkgdhjkgdhgjkdhkjgdshkgdjkgdhjkdgshjkgdshgdhk"
+
+
+if (Wort.length > 25) {
+  Wort = Wort.substring(0, 24) + "...";
+}
+
+console.log(Wort)
