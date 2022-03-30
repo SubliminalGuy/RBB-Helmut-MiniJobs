@@ -1,6 +1,7 @@
 // ACHTUNG! 
 // DER CODE HIER WIRD PRODUKTIV GENUTZT. BITTE VOR AENDERUNG mit david.schwertgen@rbb-online.de SPRECHEN !!!!
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// https://github.com/SubliminalGuy/RBB-Helmut-MiniJobs/blob/master/ExtendScripts/extendScriptsCollection.js
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -35,7 +36,8 @@ return seqName
 }
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// NEUES SCRIPT: Mappt den Grafikpfad G:\\VPMS\\01-Grafik\\ auf \\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-01-Grafik\\, und G:\VPMS\14-MoJo auf \\\\sb-fbp-ist01.ad.rbb-online.de\\Transfer\\MoJo\\ wenn ein Asset in die Timeline gezogen wird
+// NEUES SCRIPT: Mappt den Grafikpfad G:\\VPMS\\01-Grafik\\ auf \\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-01-Grafik\\, G:\VPMS\08-Ingest\ auf G:\\VPMS\\08-Ingest\\','\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-08-Ingest\ 
+// und G:\VPMS\14-MoJo auf \\\\sb-fbp-ist01.ad.rbb-online.de\\Transfer\\MoJo\\ wenn ein Asset in die Timeline gezogen wird
 
 
 app.bind("onActiveSequenceTrackItemAdded", onTrackItemAdded)
@@ -47,11 +49,11 @@ function onTrackItemAdded(track, trackItem) {
 
 
 function replaceMediaPath(trackItem) {
-    var graphicAndMojoPathSwap = [['G:\\VPMS\\01-Grafik\\','\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-01-Grafik\\' ],['G:\\VPMS\\14-MoJo\\', '\\\\sb-fbp-ist01.ad.rbb-online.de\\Transfer\\MoJo\\' ]]
+    var graphicMojoAndIngestPathSwap = [['G:\\VPMS\\01-Grafik\\','\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-01-Grafik\\' ],['G:\\VPMS\\14-MoJo\\', '\\\\sb-fbp-ist01.ad.rbb-online.de\\Transfer\\MoJo\\' ], ['G:\\VPMS\\08-Ingest\\','\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-08-Ingest\\']]
     
     var newPath = trackItem.projectItem.getMediaPath()
-    for (var k=0; k < graphicAndMojoPathSwap.length; k++) {
-        newPath = newPath.split(graphicAndMojoPathSwap[k][0]).join(graphicAndMojoPathSwap[k][1])
+    for (var k=0; k < graphicMojoAndIngestPathSwap.length; k++) {
+        newPath = newPath.split(graphicMojoAndIngestPathSwap[k][0]).join(graphicMojoAndIngestPathSwap[k][1])
         trackItem.projectItem.changeMediaPath(newPath, true)
     }
 }
@@ -66,6 +68,7 @@ var path2ToCheck = "\\\\sb-fbp-ist01\\VPMS\\Ingest\\IN_MaterialPool"
 var path3ToCheck = "\\\\sp-fbp-ist01\\VPMS\\Ingest\\IN_MaterialPool"
 var path4ToCheck = "\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-01-Grafik"
 var path5ToCheck = "\\\\sb-fbp-ist01.ad.rbb-online.de\\Transfer\\MoJo"
+var path6ToCheck = "\\\\Sp-isis01.ad.rbb-online.de\\data101$\\common\\088-08-Ingest"
 
 arrClipPaths = []
 arrClipNames = []
@@ -115,8 +118,9 @@ function checkPath(CLIP) {
                     var clipPath3Index = clipPath.indexOf(path3ToCheck)
                     var clipPath4Index = clipPath.indexOf(path4ToCheck)
                     var clipPath5Index = clipPath.indexOf(path5ToCheck)
+                    var clipPath6Index = clipPath.indexOf(path6ToCheck)
 
-                    if (clipPathIndex == -1 && clipPath2Index == -1 && clipPath3Index == -1 && clipPath4Index == -1  && clipPath5Index == -1) { //überprüft ob der Clip Pfad bereits im Array vorhanden ist, falls nicht wird er ans Ende gepusht     
+                    if (clipPathIndex == -1 && clipPath2Index == -1 && clipPath3Index == -1 && clipPath4Index == -1  && clipPath5Index == -1 && clipPath6Index == -1) { //überprüft ob der Clip Pfad bereits im Array vorhanden ist, falls nicht wird er ans Ende gepusht     
                         for (var k = 0; k < arrClipPaths.length; k++) {
                             var arrCHECK
                             if (arrClipPaths[k] == clipPath) { arrCHECK = true; break }
