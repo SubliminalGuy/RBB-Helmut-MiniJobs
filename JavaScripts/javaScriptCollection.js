@@ -1,3 +1,11 @@
+// ACHTUNG! 
+// DER CODE HIER WIRD PRODUKTIV GENUTZT. BITTE VOR AENDERUNG mit david.schwertgen@rbb-online.de oder tobias.pietschmann@rbb-online.de SPRECHEN !!!!
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// https://github.com/SubliminalGuy/RBB-Helmut-MiniJobs/blob/master/JavaScripts/javaScriptCollection.js
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 // nimmt das Projektmetadatum PLANUNGSDATUM aus OpenMedia, wandelt es aus dem Format DD.MM.YYYY in das Format YYYY-MM-DD plus 7 Tage 
 // und gibt das Ergebnis aus. Im nächsten Schritt wird das Datum genutzt um das Löschdatum zu setzen.
 
@@ -84,19 +92,64 @@ function changeDate(omDate) {
 }
 
 
+// GET SwatIO JSON
+
+var plattform = []
+
+function readChannels(swatChannels) {
+
+ for (var i=0; i <swatChannels.length;i++) {
+plattform.push({"Name": mapNames(swatChannels[i].attributes.category), 
+"Kanal": {
+"Name": swatChannels[i].attributes.name,
+"ID": swatChannels[i].id
+}})
+}
+}
+
+function mapNames(name) {
+  if (name === "tw") {
+    return "twitter";
+  } else if (name === "yt") {
+    return "youTube";
+  } else if (name === "fb") {
+    return "facebook";
+  } else if (name === "in") {
+    return "instagram";
+  } else {
+    return name;
+  }
+}
+
+
+
 // Return SwatIO Channel List
 
 
 var ChannelNames=""
 
-function returnChannelList(Channels)
-{
-for(i=0;i<Channels.Plattform.length;i++)
-{
-for(j=0;j<Channels.Plattform[i].Kanal.length;j++)
-{
-ChannelNames += Channels.Plattform[i].Name+"_"+Channels.Plattform[i].Kanal[j].Name+","
+function createChannelList(Channels) {
+for (var i = 0; i < Channels.Plattform.length; i++) {
+ChannelNames += Channels.Plattform[i].Name + "_" + Channels.Plattform[i].Kanal.Name + ","
 }
-}
+
 return ChannelNames
+}
+
+// Findet die Channel-ID des Ausspielkanals heraus
+
+var channelId = ""
+
+
+function createChannelId(kanal) {
+
+for (var i=0; i < Channels.Plattform.length; i++) {
+  
+  if (Channels.Plattform[i].Name === kanal) {
+    channelId = Channels.Plattform[i].Kanal.ID
+  }
+  
+}
+
+return channelId
 }
