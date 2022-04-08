@@ -105,6 +105,17 @@ plattform.push({"Name": mapNames(swatChannels[i].attributes.category),
 "ID": swatChannels[i].id
 }})
 }
+
+plattform.sort(function (a, b) {
+  if (a.Name < b.Name) {
+    return -1;
+  }
+
+  return 0;
+});
+
+
+
 }
 
 function mapNames(name) {
