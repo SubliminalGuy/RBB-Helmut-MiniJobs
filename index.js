@@ -1,41 +1,44 @@
-var bla = [{"Name":"twitter","Kanal":{"Name":"Blossnicht Langweilen","ID":"25770"}},{"Name":"youTube","Kanal":{"Name":"Blossnicht Langweilen","ID":"25771"}},{"Name":"facebook","Kanal":{"Name":"Langeweile im Testsystem","ID":"28478"}},{"Name":"instagram","Kanal":{"Name":"Bloss nicht langweilen","ID":"49499"}}]
+var kabinenstatus = require("./JavaScripts/kabinenstatus.js")
 
-
-bla = bla.sort((a,b) => {
-  if (a.Name < b.Name) {
-    return -1
-  }
-  return 0
-})
-
-console.log(bla)
+//kabinenstatus()
 
 
 /*
-var plattform = []
+//Flat nested Array
 
-function readChannels(swatChannels) {
+let arr = [1, [2, [3], [[4], 5], 6]];
 
- for (var i=0; i <swatChannels.length;i++) {
-plattform.push({"Name": mapNames(swatChannels[i].attributes.category), 
-"Kanal": {
-"Name": swatChannels[i].attributes.name,
-"ID": swatChannels[i].id
-}})
-}
+function flatten(arr) {
+  const reducerFunc = (acc, curVal) => acc.concat(Array.isArray(curVal) ? flatten(curVal) : curVal);
+  return arr.reduce(reducerFunc, [])
 }
 
-function mapNames(name) {
-  if (name === "tw") {
-    return "twitter";
-  } else if (name === "yt") {
-    return "youTube";
-  } else if (name === "fb") {
-    return "facebook";
-  } else if (name === "in") {
-    return "instagram";
-  } else {
-    return name;
+console.log(flatten(arr))
+
+
+// Remove duplicates
+
+const rmDuplicates = (arr) => {
+  let result = []
+  arr.reduce((acc, curVal) => {
+    
+      if (acc == curVal) {
+        return curVal
+      }
+      else {
+        result.push(curVal)
+        return curVal
+      }
+  },0)
+    return result
   }
-}
+             
+console.log(rmDuplicates([1, 2, 2, 3, 4, 4, 4]))
+
+
+// Reverse an array without mutating it
+let arr = [1,2,3,4,5,6]
+const reverseArray = arr.reduceRight((acc, curVal) => [...acc, curVal], [])
+
+console.log(reverseArray)
 */
